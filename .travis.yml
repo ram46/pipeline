@@ -1,6 +1,12 @@
+language: go
+
 branches:
   only:
     master
+
+notifications:
+  email: false
+
 jobs: 
   include:
   - stage: "Build Docker Image"
