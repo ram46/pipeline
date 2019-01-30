@@ -9,12 +9,12 @@ notifications:
 
 jobs: 
   include:
-  - stage: "Build Docker Image"
-
-  script: 
-  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_USERNAME" --password-stdin
-  - docker build -t helloworld .
-  - docker images
+  - stage: "Build"
+    name: "Docker Image"
+    script: 
+    - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_USERNAME" --password-stdin
+    - docker build -t helloworld .
+    - docker images
   
   - stage: "Test"
   - stage: "Deploy"
