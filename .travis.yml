@@ -18,5 +18,6 @@ jobs:
     - docker tag helloworld $DOCKER_USERNAME/test:helloworld
     - docker push $DOCKER_USERNAME/test:helloworld
   - stage: "Test"
-    name: "Unit test"
+    name: "Pull and test image"
+    script: docker run --rm $DOCKER_USERNAME/test:helloworld
   - stage: "Deploy"
