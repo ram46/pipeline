@@ -1,0 +1,12 @@
+branches:
+  only:
+    master
+jobs: 
+  include:
+  - stage: "Build Docker Image"
+
+  script: 
+  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_USERNAME" --password-stdin
+
+  - stage: "Test"
+  - stage: "Deploy"
