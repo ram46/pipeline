@@ -12,7 +12,7 @@ jobs:
   - stage: "Build"
     name: "Docker Image"
     script: 
-    - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_USERNAME" --password-stdin
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker build -t helloworld .
     - docker images
   
