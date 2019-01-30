@@ -19,5 +19,8 @@ jobs:
     - docker push $DOCKER_USERNAME/test:helloworld
   - stage: "Test"
     name: "Pull and test image"
-    script: docker run --rm $DOCKER_USERNAME/test:helloworld
+    script: 
+    - apt-get install jq
+    - TOKEN=$( curl -sSLd "username=${DOCKER_USERNAME}&password=${DOCKER_PASSWORD}" https://hub.docker.com/v2/users/login | jq -r ".token" )
+    - curl -sH "Authorization: JWT $TOKEN" "https://hub.docker.com/v2/repositories/${DOCKER_USERNAME}/test:helloworld" | jq .
   - stage: "Deploy"
